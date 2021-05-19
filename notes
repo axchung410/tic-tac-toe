@@ -1,0 +1,16 @@
+Classes:
+- Game
+- Player
+
+Game:
+- Hold board [array of numbers, 1-9]
+- Has 2 players
+
+* check game status
+* display board
+
+
+Player
+- Hold pieces [number 1-9]
+
+* play move/take piece from board
