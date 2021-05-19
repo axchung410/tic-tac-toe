@@ -14,3 +14,21 @@ Player
 - Hold pieces [number 1-9]
 
 * play move/take piece from board
+
+sample board
+         j 0 1 2
+|1|2|3| i0 0 1 2
+|4|5|6|  1 1 2 3
+|7|8|9|  2 2 3 4
+
+wins:
+{0,0 0,1 0,2} #horizontals
+{1,0 1,1 1,2}
+{2,0 2,1 2,2}
+
+{0,0 1,0 2,0} #verticals
+{0,1 1,1 2,1}
+{0,2 1,2 2,2}
+
+{0,0 1,1 2,2} #diagonals
+{0,2 1,1 2,0}

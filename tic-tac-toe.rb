@@ -5,11 +5,6 @@ class Cell
   def initialize
     @type = " "
   end
-
-  public
-  def update(type) #use this method to update cell
-    @type = type
-  end
 end
 
 class Player
@@ -61,7 +56,7 @@ class Game
   end
 
   def display_board
-    puts "Current game"
+    puts "Current board"
     puts "-------"
     for i in 0..2
       print "|"
@@ -71,6 +66,9 @@ class Game
       puts
     end
     puts "-------"
+  end
+
+  def check_win
   end
 end
 
@@ -83,3 +81,6 @@ players = game.players
 players[0].play_turn(game.board, 4)
 players[1].play_turn(game.board, 6)
 game.display_board
+game.check_win
+
+
