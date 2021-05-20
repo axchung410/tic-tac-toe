@@ -72,7 +72,26 @@ class Game
   end
 
   def check_win
+    x_cells = []
+    o_cells = []
+    puts board.length
+    for i in 0..board.length-1
+      if(board[i].type == "X")
+        x_cells.push(i)
+      elsif(board[i].type == "O")
+        o_cells.push(i)
+      end
+    end
     
+    if(([0,1,2] - x_cells).empty? || ([3,4,5] - x_cells).empty? || ([6,7,8] - x_cells).empty? || \
+       ([0,3,6] - x_cells).empty? || ([1,4,7] - x_cells).empty? || ([2,5,8] - x_cells).empty? || \
+       ([0,4,8] - x_cells).empty? || ([2,4,6] - x_cells).empty?)
+      puts "Player 1 wins!"
+    elsif(([0,1,2] - o_cells).empty? || ([3,4,5] - o_cells).empty? || ([6,7,8] - o_cells).empty? || \
+          ([0,3,6] - o_cells).empty? || ([1,4,7] - o_cells).empty? || ([2,5,8] - o_cells).empty? || \
+          ([0,4,8] - o_cells).empty? || ([2,4,6] - o_cells).empty?)
+      puts "Player 2 wins!"
+    end
   end
 end
 
@@ -80,10 +99,17 @@ game = Game.new
 game.display_sample_board
 game.display_board
 players = game.players
+player1 = game.players[0]
+player2 = game.players[1]
 #puts players[0].cell_type
 #puts players[1].cell_type
-players[0].play_turn(game.board, 4)
-players[1].play_turn(game.board, 6)
+player1.play_turn(game.board, 4)
+player2.play_turn(game.board, 6)
+player1.play_turn(game.board, 1)
+player2.play_turn(game.board, 5)
+player1.play_turn(game.board, 2)
+player2.play_turn(game.board, 3)
+player1.play_turn(game.board, 7)
 game.display_board
 game.check_win
 
