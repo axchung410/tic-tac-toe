@@ -11,15 +11,14 @@ Game:
 
 
 Player
-- Hold pieces [number 1-9]
-
-* play move/take piece from board
+- has cell_type (X or O)
+- has method to "play turn" i.e. make a cell on board X or O based on cell type
 
 sample board
-         j 0 1 2
-|1|2|3| i0 0 1 2
-|4|5|6|  1 1 2 3
-|7|8|9|  2 2 3 4
+         j        indices
+|1|2|3| i0 0 1 2  0 1 2
+|4|5|6|  1 1 2 3  3 4 5
+|7|8|9|  2 2 3 4  6 7 8
 
 wins:
 {0,0 0,1 0,2} #horizontals
@@ -32,3 +31,15 @@ wins:
 
 {0,0 1,1 2,2} #diagonals
 {0,2 1,1 2,0}
+
+by indices
+{0 1 2} #horizontals
+{3 4 5}
+{6 7 8}
+
+{0 3 6} #verticals
+{1 4 7}
+{2 5 8}
+
+{0 4 8} #diagonals
+{2 4 6}

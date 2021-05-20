@@ -20,10 +20,11 @@ class Player
   end
 
   def play_turn(board, cell_number)
-    i = (cell_number -1) / 3
-    j = (cell_number -1) % 3
+    #i = (cell_number -1) / 3
+    #j = (cell_number -1) % 3
     puts "Player played #{cell_number}"
-    board[i][j].type = cell_type
+    #board[i][j].type = cell_type
+    board[cell_number - 1].type = cell_type
   end
 end
 
@@ -36,7 +37,8 @@ class Game
   @players[1] = Player.new(2)
 
   def initialize
-    @board = Array.new(3) {Array.new(3) {Cell.new}}
+    #@board = Array.new(3) {Array.new(3) {Cell.new}}
+    @board = Array.new(9) {Cell.new}
     @players = Array.new(2)
     @players[0] = Player.new(1)
     @players[1] = Player.new(2)
@@ -48,7 +50,7 @@ class Game
     for i in 0..2
       print "|"
       for j in 0..2
-        print (i.to_i * 3 + j.to_i + 1).to_s + "|"
+        print (i * 3 + j + 1).to_s + "|"
       end
       puts
     end
@@ -61,7 +63,8 @@ class Game
     for i in 0..2
       print "|"
       for j in 0..2
-        print board[i][j].type + "|"
+        #print board[i][j].type + "|"
+        print board[i * 3 + j].type + "|"
       end
       puts
     end
@@ -69,6 +72,7 @@ class Game
   end
 
   def check_win
+    
   end
 end
 
