@@ -74,11 +74,14 @@ class Game
   def check_win
     x_cells = []
     o_cells = []
+    blank_cells = []
     for i in 0..board.length-1
       if(board[i].type == "X")
         x_cells.push(i)
       elsif(board[i].type == "O")
         o_cells.push(i)
+      else
+        blank_cells.push(i)
       end
     end
     
@@ -91,6 +94,9 @@ class Game
           ([0,3,6] - o_cells).empty? || ([1,4,7] - o_cells).empty? || ([2,5,8] - o_cells).empty? || \
           ([0,4,8] - o_cells).empty? || ([2,4,6] - o_cells).empty?)
       puts "Player 2 wins!"
+      return true
+    elsif(blank_cells.empty?)
+      puts "It's a tie!"
       return true
     else
       return false
@@ -110,22 +116,20 @@ player2 = game.players[1]
 
 #game loop
 game_over = false
-while game_over == false do
+while (game_over == false) do
   puts "Player 1's turn, please enter a number 1-9:"
-  begin
+  turn_over = false
+  while (turn_over == false) do
     turn = gets.chomp.to_i
-  rescue StandardError=>e
-    puts "Input was not a number, please try again!"
-    retry
-  else
-    if(turn > 0 && turn < 10)
+    if((turn.is_a? Integer) && turn > 0 && turn < 10)
       if(game.board[turn - 1].type == " ")
         player1.play_turn(game.board, turn)
+        turn_over = true
       else
-        puts "cell already taken, please try again!"
+        puts "Cell already taken, please try again!"
       end
     else
-      puts "Please enter a number 1-9"
+      puts "Please enter a number 1-9:"
     end
   end
   game.display_board
@@ -134,20 +138,18 @@ while game_over == false do
     break;
   end
   puts "Player 2's turn, please enter a number 1-9:"
-  begin
+  turn_over = false
+  while (turn_over == false) do
     turn = gets.chomp.to_i
-  rescue StandardError=>e
-    puts "Input was not a number, please try again!"
-    retry
-  else
-    if(turn > 0 && turn < 10)
+    if((turn.is_a? Integer) && turn > 0 && turn < 10)
       if(game.board[turn - 1].type == " ")
         player2.play_turn(game.board, turn)
+        turn_over = true
       else
-        puts "cell already taken, please try again!"
+        puts "Cell already taken, please try again!"
       end
     else
-      puts "Please enter a number 1-9"
+      puts "Please enter a number 1-9:"
     end
   end
   game.display_board
@@ -155,13 +157,3 @@ while game_over == false do
     game_over = true
   end
 end
-
-
-  
-#player1.play_turn(game.board, 4)
-#player2.play_turn(game.board, 6)
-#player1.play_turn(game.board, 1)
-#player2.play_turn(game.board, 5)
-#player1.play_turn(game.board, 2)
-#player2.play_turn(game.board, 3)
-#player1.play_turn(game.board, 7)
